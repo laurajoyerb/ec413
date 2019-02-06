@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+// Basic program for converting user-inputted decimal value to 32-bit binary
 int main() {
     int dec;
     printf("Please enter an integer in decimal: ");

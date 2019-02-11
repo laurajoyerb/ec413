@@ -2,6 +2,17 @@
 #include <string.h>
 #include <math.h>
 
+int power(int base, int expon)
+{
+  int result = 1;
+  int i;
+  for (i = 0; i < expon; i++)
+  {
+    result *= base;
+  }
+  return result;
+}
+
 // accepts an 8-bit string of an unsigned integer in binary
 int main() {
     char binStr[10];
@@ -13,10 +24,11 @@ int main() {
 
     int bin[7]; // holds binary magnitude
 
+    int i;
     // Flips bits for negative numbers
     if (sign == '1')
     {
-      for (int i = 1; i < 8; i++)
+      for (i = 1; i < 8; i++)
       {
         if (binStr[i] == '0')
           bin[i - 1] = 1;
@@ -26,7 +38,7 @@ int main() {
     }
     else // keeps bits the same for positive numbers
     {
-      for (int i = 1; i < 8; i++)
+      for (i = 1; i < 8; i++)
       {
         if (binStr[i] == '0')
           bin[i - 1] = 0;
@@ -37,9 +49,9 @@ int main() {
 
     // Convert to decimal
     int dec = 0;
-    for (int i = 6; i >= 0; i--)
+    for (i = 6; i >= 0; i--)
     {
-      dec += bin[i] * pow(2, 6 - i);
+      dec += bin[i] * power(2, 6 - i);
     }
 
     if (sign == '1')

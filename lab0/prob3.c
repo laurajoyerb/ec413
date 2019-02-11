@@ -17,7 +17,8 @@ int main() {
       digits++;
     }
 
-    for (int i = digits - 1; i >= 0; i--) // prints all remainders backwards
+    int i;
+    for (i = digits - 1; i >= 0; i--) // prints all remainders backwards
     {
       if (hexNum[i] > 9)
         printf("%c", hexNum[i] + 55); // adds 55 to get "A" instead of 10 from ASCII equivalent

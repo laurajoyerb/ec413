@@ -19,5 +19,5 @@ int main() {
 
     int fibNum = fib(num);
 
-    printf("The n-th fibonacci number is: %d\n",fibNum);
+    printf("%d\n",fibNum);
 }

@@ -51,7 +51,8 @@ int main() {
     int* arrP = malloc(size*sizeof(int)); // arr points to head of array
     int* scanner = arrP; // extra pointer to go through array
 
-    for (int i = 0; i < size; i++)
+    int i;
+    for (i = 0; i < size; i++)
     {
       scanf("%d", scanner); // accepts all integers for the array
       scanner++;
@@ -61,7 +62,7 @@ int main() {
     scanf("%d", &search);
 
     // populates array without pointer weirdness
-    for (int i = 0; i < size; i++)
+    for (i = 0; i < size; i++)
     {
       arr[i] = *arrP;
       arrP++;

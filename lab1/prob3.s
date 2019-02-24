@@ -3,6 +3,7 @@ int_multiply:
   sw s0, 44(sp)
   addi s0, sp, 48
   sw a0, -36(s0)
+  sw a1, -40(s0)
 
   li t0, 0		;result is x5, t0
 	li t1, 0		;i is x28, t1
@@ -23,25 +24,29 @@ factorial:
   sw s0, 44(sp)
   addi s0, sp, 48
   sw a0, -36(s0)
+  sw ra, -32(s0)  ; stores return address
 
-  add s1, zero, ra ; stores return address
-
-  mv t2, a0 ;moves n argument to temp
-  li t3, 1  ;product is initialized as 1
+  mv t0, a0 ;moves n argument to temp
+  li t1, 1  ;product is initialized as 1
 .while:
-  bge zero, t2, .end
-  add a0, zero, t3 ; stores product
-  add a1, zero, t2 ; stores n
+  bge zero, t0, .end
+  add a0, zero, t1 ; stores product (as argument)
+  add a1, zero, t0 ; stores n (as argument)
+  sw t0, -28(s0) ; stores n
+
   call int_multiply
-  add t3, zero, a0 ; moves int_multiply result to product
-  addi t2, t2, -1
+
+  lw t0, -28(s0)
+  add t1, zero, a0 ; moves int_multiply result to product
+  addi t0, t0, -1
   j .while
 .end:
-  mv a0, t3
+  mv a0, t1
 
-  ;lw s0, 44(sp)
+  lw ra, -32(s0)  ; loads return address back
+
+  lw s0, 44(sp)
   addi sp, sp, 48
-  add ra, zero, s1 ; loads return address back
   jr ra
 
 main:

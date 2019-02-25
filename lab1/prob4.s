@@ -1,3 +1,6 @@
+.text
+.globl fib_nr
+.type fib_nr, @function
 fib_nr:
   addi sp, sp, -48
   sw s0, 44(sp)
@@ -22,8 +25,11 @@ fib_nr:
   addi sp, sp, 48
   jr ra
 
+.text
+.globl main
+.type main, @function
 main:
-  addi sp, sp, -48
+  addi sp, sp, -16
   sw ra, 12(sp)
   sw s0, 8(sp)
   addi s0, sp, 16
